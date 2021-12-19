@@ -44,25 +44,48 @@ class MyModel extends Model
         foreach ($result as $key => $value) {
             if ($value->total <= 0 && $parent_id == 0) {
                 $res .=
-                    '<a class="nav-link" href="' . base_url() . '/' . $value->menu_url . '">
-                        <div class="sb-nav-link-icon"><i class="' . (!empty($value->menu_ikon) ? $value->menu_ikon : 'far fa-circle') . '"></i></div>
-                        ' . $value->menu_nama . '
-                    </a>';
-            } else if ($value->total > 0 && $parent_id == 0) {
-                $res .=
-                    '<a class="nav-link collapsed" href="' . base_url() . '/' . $value->menu_url . '" data-bs-toggle="collapse" data-bs-target="#collapseLayouts' . $value->menu_id . '" aria-expanded="false" aria-controls="collapseLayouts' . $value->menu_id . '">
-                        <div class="sb-nav-link-icon"><i class="' . (!empty($value->menu_ikon) ? $value->menu_ikon : 'far fa-circle') . '"></i></div>
-                        ' . $value->menu_nama . '
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    '<li class="nav-item">
+                    <a class="nav-link" href="' . base_url() . '/' . $value->menu_url . '">
+                        <i class="' . (!empty($value->menu_ikon) ? $value->menu_ikon : 'far fa-circle') . '"></i>
+                        <span>' . $value->menu_nama . '</span>
                     </a>
-                    <div class="collapse" id="collapseLayouts' . $value->menu_id . '" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">';
-                $res .= $this->get_sidebar($user_id, $modul_id, $value->menu_id);
-                $res .= "</nav>
-                </div>";
+                </li>';
+            } else if ($value->total > 0 && $parent_id == 0) {
+                $res .= '<li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_id' . $value->menu_id . '" aria-expanded="false" aria-controls="menu_id' . $value->menu_id . '">
+                        <i class="' . (!empty($value->menu_ikon) ? $value->menu_ikon : 'far fa-circle') . '"></i>
+                        <span>' . $value->menu_nama . '</span>
+                    </a>
+                    <div id="menu_id' . $value->menu_id . '" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                        ' . $this->get_sidebar($user_id, $modul_id, $value->menu_id) . '
+                        </div>
+                    </div>
+                </li>';
             } else {
-                $res .= '<a class="nav-link" href="' . base_url() . '/' . $value->menu_url . '">' . $value->menu_nama . '</a>';
+                $res .= '<a class="collapse-item" href="' . base_url() . '/' . $value->menu_url . '">' . $value->menu_nama . '</a>';
             }
+        }
+
+        return $res;
+    }
+
+    public function get_list_mesin()
+    {
+        $res = "";
+
+        $sql = "SELECT
+                    *
+                from
+                    ms_device md
+                where
+                    md.device_status = 1
+                order by
+                    device_kode";
+
+        $result = $this->db->query($sql)->getResult();
+        foreach ($result as $v) {
+            $res .= '<a class="collapse-item" href="' . base_url() . '/mesin/detail/' . $v->device_id . '">' . $v->device_nama . '</a>';
         }
 
         return $res;

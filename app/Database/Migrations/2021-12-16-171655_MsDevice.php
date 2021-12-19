@@ -27,6 +27,10 @@ class MsDevice extends Migration
                 'type'       => 'boolean',
                 'default' => 1,
             ],
+            'device_kondisi'       => [
+                'type'       => 'int',
+                'default' => 1,
+            ],
         ]);
         $this->forge->addKey('device_id', true);
         $this->forge->createTable('ms_device');

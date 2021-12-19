@@ -13,10 +13,12 @@ class DeviceSeeder extends Seeder
                 'device_kode'    => "01",
                 'device_nama'    => "Engine 1",
                 'device_status'  => 1,
+                'device_kondisi'  => 0,
             ], [
                 'device_kode'    => "02",
                 'device_nama'    => "Engine 2",
                 'device_status'  => 1,
+                'device_kondisi'  => 0,
             ],
         ];
 

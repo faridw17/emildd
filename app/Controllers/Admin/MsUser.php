@@ -81,39 +81,35 @@ class MsUser extends AdminController
             $action = "";
             $isi = rawurlencode(json_encode($row));
             if ($row->user_status == 1) {
-                $status = '<span class="badge rounded-pill bg-success">Aktif</span>';
+                $status = '<span class="badge badge-success">Aktif</span>';
             } else {
-                $status = '<span class="badge rounded-pill bg-danger">Non Aktif</span>';
+                $status = '<span class="badge badge-danger">Non Aktif</span>';
             }
 
             $akses = $row->total_akses > 0 ? 'btn-warning' : 'btn-secondary';
 
-            $hapus = ' <button onclick="set_del(\'' . $row->user_id . '\')" class="btn btn-sm btn-danger " title="Delete">
+            $hapus = '&nbsp;<button onclick="set_del(\'' . $row->user_id . '\')" class="btn btn-sm btn-danger " title="Delete">
                         <i class="fa fa-trash"></i>
                     </button>';
 
-            $action .= '<div class="d-grid gap-2 d-md-block">';
             if ($row->user_id == 1 && $this->userdata->user_id == 1) {
                 $action .= '<button onclick="akses(\'' . $row->user_id . '\',\'' . $row->user_fullname . '\')" class="btn btn-sm ' . $akses . ' font-weight-bold" title="Hak Akses">
-                                    <i class="fa fa-cogs"></i>
-                                </button>
-                                <button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
-                                    <i class="fa fa-pencil-alt"></i>
-                                </button>';
+                                <i class="fa fa-cogs"></i>
+                            </button>&nbsp;<button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
+                                <i class="fa fa-pencil-alt"></i>
+                            </button>';
             } else if ($row->user_id == 1 && $this->userdata->user_id != 1) {
                 $action .= '';
             } else {
                 $action .= '<button onclick="akses(\'' . $row->user_id . '\',\'' . $row->user_fullname . '\')" class="btn btn-sm ' . $akses . ' font-weight-bold" title="Hak Akses">
                                 <i class="fa fa-cogs"></i>
-                            </button> <button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
+                            </button>&nbsp;<button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
                                 <i class="fa fa-pencil-alt"></i>
                             </button>';
                 if ($row->user_id != $this->userdata->user_id) {
                     $action .= $hapus;
                 }
             }
-            $action .= '</div>';
-
 
             $records["data"][] = array(
                 $no++,

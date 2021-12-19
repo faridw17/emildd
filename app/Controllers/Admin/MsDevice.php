@@ -70,19 +70,17 @@ class MsDevice extends AdminController
         foreach ($data as $row) {
             $isi = rawurlencode(json_encode($row));
             if ($row->device_status == 1) {
-                $status = '<span class="badge rounded-pill bg-success">Aktif</span>';
+                $status = '<span class="badge badge-success">Aktif</span>';
             } else {
-                $status = '<span class="badge rounded-pill bg-danger">Non Aktif</span>';
+                $status = '<span class="badge badge-danger">Non Aktif</span>';
             }
 
-            $action = '<div class="d-grid gap-2 d-md-block">
-                            <button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
-                                <i class="fa fa-pencil-alt"></i>
-                            </button>
-                            <button onclick="set_del(\'' . $row->device_id . '\')" class="btn btn-sm btn-danger " title="Delete">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </div>';
+            $action = '<button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
+                            <i class="fa fa-pencil-alt"></i>
+                        </button>
+                        <button onclick="set_del(\'' . $row->device_id . '\')" class="btn btn-sm btn-danger " title="Delete">
+                            <i class="fa fa-trash"></i>
+                        </button>';
 
             $records["data"][] = array(
                 $no++,

@@ -1,19 +1,20 @@
-<h1 class="mt-4"><?= $title ?></h1>
+<h1 class="h3 mb-2 text-gray-800"><?= $title ?></h1>
 <div class="row" id="rowForm" style="display: none;">
-  <div class="col-xl-12">
-    <div class="card mb-4">
-      <div class="card-header text-white bg-secondary">
+  <div class="col-md-12">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
         <div class="row">
-          <div class="col-sm-4">
-            <h4 class="card-title">
+          <div class="col-sm-6 align-self-center">
+            <h5 class="card-title mb-0">
               Form <?= $title ?>
-            </h4>
+            </h5>
           </div>
-          <div class="col-sm-8">
-            <button class="btn btn-primary float-end" type="button" onclick="$('#btnCancel').click()"><i class="fa fa-database"></i> List</button>
+          <div class="col-sm-6">
+            <button class="btn btn-primary float-right" type="button" onclick="$('#btnCancel').click()"><i class="fa fa-database"></i> List</button>
           </div>
         </div>
       </div>
+
       <div class="card-body">
 
         <!--begin::Form-->
@@ -21,8 +22,8 @@
           <input type="hidden" name="act" id="act" value="add">
           <input type="hidden" name="menu_id" id="menu_id">
           <div class="card-body">
-            <div class="row mb-3">
-              <label class="col-md-3 col-form-label">Modul</label>
+            <div class="form-group row">
+              <label class="col-md-3 label-control">Modul</label>
               <div class="col-md-3">
                 <select class="form-control" id="modul_id" name="modul_id">
                   <?php foreach ($modul as $v) : ?>
@@ -31,41 +32,41 @@
                 </select>
               </div>
             </div>
-            <div class="row mb-3">
-              <label class="col-md-3 col-form-label">Parent</label>
+            <div class="form-group row">
+              <label class="col-md-3 label-control">Parent</label>
               <div class="col-md-5">
                 <select class="form-control" id="menu_parent_id" name="menu_parent_id">
                   <option value="0" data-kode="">0 - ROOT</option>
                 </select>
               </div>
             </div>
-            <div class="row mb-3">
-              <label class="col-md-3 col-form-label">Kode</label>
+            <div class="form-group row">
+              <label class="col-md-3 label-control">Kode</label>
               <div class="col-md-5">
                 <input type="text" class="form-control" placeholder="Kode Menu" id="menu_kode" name="menu_kode" />
                 <input type="hidden" id="menu_kode_lama" name="menu_kode_lama" />
               </div>
             </div>
-            <div class="row mb-3">
-              <label class="col-md-3 col-form-label">Nama</label>
+            <div class="form-group row">
+              <label class="col-md-3 label-control">Nama</label>
               <div class="col-md-5">
                 <input type="text" class="form-control" placeholder="Nama Menu" id="menu_nama" name="menu_nama" />
               </div>
             </div>
-            <div class="row mb-3">
-              <label class="col-md-3 col-form-label">Ikon</label>
+            <div class="form-group row">
+              <label class="col-md-3 label-control">Ikon</label>
               <div class="col-md-5">
                 <input type="text" class="form-control" placeholder="Ikon Menu" id="menu_ikon" name="menu_ikon" />
               </div>
             </div>
-            <div class="row mb-3">
-              <label class="col-md-3 col-form-label">URL</label>
+            <div class="form-group row">
+              <label class="col-md-3 label-control">URL</label>
               <div class="col-md-5">
                 <input type="text" class="form-control" placeholder="URL Menu" id="menu_url" name="menu_url" />
               </div>
             </div>
-            <div class="row mb-3">
-              <label class="col-md-3 col-form-label">Status</label>
+            <div class="form-group row">
+              <label class="col-md-3 label-control">Status</label>
               <div class="col-md-3">
                 <select class="form-control" id="menu_status" name="menu_status">
                   <option value="1">Aktif</option>
@@ -78,34 +79,33 @@
         <!--end::Form-->
       </div>
       <div class="card-footer text-center">
-        <div class="d-grid gap-2 d-md-block">
-          <button type="button" id="btnSave" class="btn btn-primary">Save</button>
-          <button type="button" id="btnCancel" class="btn btn-secondary">Cancel</button>
-        </div>
+        <button type="button" id="btnSave" class="btn btn-primary">Save</button>
+        <button type="button" id="btnCancel" class="btn btn-secondary">Cancel</button>
       </div>
     </div>
   </div>
 </div>
+
 <div class="row" id="rowList">
-  <div class="col-xl-12">
-    <div class="card mb-4">
-      <div class="card-header text-white bg-secondary">
+  <div class="col-md-12">
+    <div class="card shadow mb-4">
+      <div class="card-header">
         <div class="row">
-          <div class="col-sm-4">
-            <h4 class="card-title">
+          <div class="col-sm-6 align-self-center">
+            <h5 class="card-title mb-0">
               Data <?= $title ?>
-            </h4>
+            </h5>
           </div>
-          <div class="col-sm-8">
-            <button type="button" id="btnAdd" class="btn btn-primary float-end"><i class="fa fa-plus"></i> Data</button>
+          <div class="col-sm-6">
+            <button type="button" id="btnAdd" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Data</button>
           </div>
         </div>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <div class="row mb-3">
-              <label class="col-md-3 col-form-label">Modul</label>
+            <div class="form-group row">
+              <label class="col-md-3 label-control">Modul</label>
               <div class="col-md-9">
                 <select class="form-control" id="fil_modul">
                   <?php foreach ($modul as $v) : ?>
@@ -117,7 +117,7 @@
           </div>
         </div>
         <!--begin::DataTable-->
-        <table class="table table-bordered table-hover table-checkable" id="tbl_vendor" style="margin-top: 13px !important; width: 100%;">
+        <table class="table table-sm table-bordered table-hover table-checkable" id="tbl_vendor" style="margin-top: 13px !important; width: 100%;">
           <thead>
             <tr>
               <th class="text-center">No.</th>
@@ -149,7 +149,6 @@
         searchDelay: 500,
         processing: true,
         serverSide: true,
-        scrollX: true,
         ajax: {
           url: '<?= base_url() ?>/admin/msmenu/get_data',
           type: 'POST',
@@ -192,15 +191,15 @@
         errorElement: 'span',
         ignore: 'input[type=hidden]',
         highlight: function(el, errorClass) {
-          $(el).closest('.row').first().addClass('has-error');
+          $(el).closest('.form-group').first().addClass('has-error');
         },
         unhighlight: function(el, errorClass) {
-          var $parent = $(el).closest('.row').first();
+          var $parent = $(el).closest('.form-group').first();
           $parent.removeClass('has-error');
           $parent.find('.help-block').hide();
         },
         errorPlacement: function(error, el) {
-          error.appendTo(el.closest('.row').find('div:first'));
+          error.appendTo(el.closest('.form-group').find('div:first'));
         },
         submitHandler: function(form) {
           btnSave.attr('disabled', 'disabled').text('Loading...');

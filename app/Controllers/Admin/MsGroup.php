@@ -72,50 +72,34 @@ class MsGroup extends AdminController
         foreach ($data as $row) {
             $isi = rawurlencode(json_encode($row));
             if ($row->group_status == 1) {
-                $status = '<span class="badge rounded-pill bg-success">Aktif</span>';
+                $status = '<span class="badge badge-success">Aktif</span>';
             } else {
-                $status = '<span class="badge rounded-pill bg-danger">Non Aktif</span>';
+                $status = '<span class="badge badge-danger">Non Aktif</span>';
             }
 
-            $hapus = ' <button onclick="set_del(\'' . $row->group_id . '\')" class="btn btn-sm btn-danger " title="Delete">
+            $hapus = '&nbsp;<button onclick="set_del(\'' . $row->group_id . '\')" class="btn btn-sm btn-danger " title="Delete">
                         <i class="fa fa-trash"></i>
                     </button>';
 
-
-            $action = '<div class="d-grid gap-2 d-md-block">';
+            $action = '';
 
             if ($row->group_id == 1) {
                 if ($this->userdata->user_id == 1) {
                     $action .= ' <button onclick="akses(\'' . $row->group_id . '\',\'' . $row->group_nama . '\')" class="btn btn-sm btn-warning font-weight-bold" title="Hak Akses">
-                                        <i class="fa fa-cogs"></i>
-                                    </button>
-                                    <button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
-                                        <i class="fa fa-pencil-alt"></i>
-                                    </button>';
+                                    <i class="fa fa-cogs"></i>
+                                </button>&nbsp;<button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </button>';
                 } else {
                     $action .= '';
                 }
             } else {
                 $action .= ' <button onclick="akses(\'' . $row->group_id . '\',\'' . $row->group_nama . '\')" class="btn btn-sm btn-warning font-weight-bold" title="Hak Akses">
-                                    <i class="fa fa-cogs"></i>
-                                </button>
-                                <button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
-                                    <i class="fa fa-pencil-alt"></i>
-                                </button>' . ($row->group_id > 2 ? $hapus : '');
+                                <i class="fa fa-cogs"></i>
+                            </button>&nbsp;<button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
+                                <i class="fa fa-pencil-alt"></i>
+                            </button>' . ($row->group_id > 2 ? $hapus : '');
             }
-
-            $action .= '</div>';
-
-            // $isHaveAkses = $this->MsGroupModel->checked_have_akses($row->GRP_ID);
-            // if ($isHaveAkses > 0) {
-            //     $hak = '<a href="grup/akses/' . $id2 . '" class="btn btn-xs btn-warning" title="Pengaturan">
-            // 				<i class="fa fa-cogs"></i>
-            // 			</a>';
-            // } else {
-            //     $hak = '<a href="grup/akses/' . $id2 . '" class="btn btn-xs btn-default" title="Pengaturan">
-            // 				<i class="fa fa-cogs"></i>
-            // 			</a>';
-            // }
 
             $records["data"][] = array(
                 $no++,

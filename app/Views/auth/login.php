@@ -1,13 +1,23 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+
   <title>Login</title>
-  <style type="text/css">
+
+  <!-- Custom fonts for this template-->
+  <link href="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+  <style>
     .has-error {
       color: #dc3545;
     }
@@ -16,50 +26,57 @@
       border-color: #dc3545;
     }
   </style>
-  <link href="<?= base_url() ?>/src/css/styles.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-  <link href="<?= base_url() ?>/node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+
 </head>
 
-<body style="background-color: #8b14c1;">
-  <div id="layoutAuthentication">
-    <div id="layoutAuthentication_content">
-      <main style="height: 100vh;">
-        <div class="container">
-          <div class="row justify-content-center align-content-center" style="height: 100vh;">
-            <div class="col-lg-5">
-              <div class="card shadow-lg border-0 rounded-lg">
-                <div class="card-header">
-                  <h3 class="text-center font-weight-light my-4">Login</h3>
-                </div>
-                <div class="card-body">
-                  <form method="POST" id="form_vendor">
-                    <div class="form-floating mb-3">
-                      <input class="form-control" id="username" name="username" type="text" placeholder="Username">
-                      <label for="username">Username</label>
-                      <div class="text-error"></div>
+<body class="bg-gradient-primary" style="height: 100vh;">
+
+  <div class="container" style="height: 100vh;">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center align-content-center" style="height: 100vh;">
+
+      <div class="col-lg-6">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+
+              <div class="col-lg-12">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                  </div>
+                  <form class="user" id="form_vendor">
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Masukkan Username">
                     </div>
-                    <div class="form-floating mb-3">
-                      <input class="form-control" id="password" name="password" type="password" placeholder="Password">
-                      <label for="password">Password</label>
-                      <div class="text-error"></div>
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Masukkan Password">
                     </div>
-                    <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
-                      <button type="submit" class="btn btn-primary" id="btnSubmit">Login</button>
-                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block" id="btnSubmit">
+                      Login
+                    </button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </main>
+
+      </div>
+
     </div>
 
   </div>
-  <script src="<?= base_url() ?>/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="<?= base_url() ?>/src/js/scripts.js"></script>
+
+  <!-- Bootstrap core JavaScript-->
   <script src="<?= base_url() ?>/node_modules/jquery/dist/jquery.js"></script>
+  <script src="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
   <script src="<?= base_url() ?>/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
   <script src="<?= base_url() ?>/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
   <script src="<?= base_url() ?>/node_modules/jquery-validation/dist/localization/messages_id.min.js"></script>
@@ -88,15 +105,15 @@
           errorElement: 'span',
           ignore: 'input[type=hidden]',
           highlight: function(el, errorClass) {
-            $(el).closest('.form-floating').first().addClass('has-error');
+            $(el).closest('.form-group').first().addClass('has-error');
           },
           unhighlight: function(el, errorClass) {
-            var $parent = $(el).closest('.form-floating').first();
+            var $parent = $(el).closest('.form-group').first();
             $parent.removeClass('has-error');
             $parent.find('.help-block').hide();
           },
           errorPlacement: function(error, el) {
-            error.appendTo(el.closest('.form-floating').find('.text-error'));
+            error.appendTo(el.closest('.form-group'));
           },
           submitHandler: function(form) {
             btnSubmit.attr('disabled', 'disabled').text('Loading...');

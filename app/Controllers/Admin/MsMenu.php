@@ -96,9 +96,9 @@ class MsMenu extends AdminController
         foreach ($data as $row) {
             $isi = rawurlencode(json_encode($row));
             if ($row->menu_status == 1) {
-                $status = '<span class="badge rounded-pill bg-success">Aktif</span>';
+                $status = '<span class="badge badge-success">Aktif</span>';
             } else {
-                $status = '<span class="badge rounded-pill bg-danger">Non Aktif</span>';
+                $status = '<span class="badge badge-danger">Non Aktif</span>';
             }
 
             $aksi_hapus = "";
@@ -109,7 +109,7 @@ class MsMenu extends AdminController
                                 </button>';
             }
 
-            $action = '<div class="d-grid gap-2 d-md-block">';
+            $action = '';
 
             if ($row->menu_id <= 4 && $this->userdata->user_id == 1) {
                 $action .= '<button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
@@ -122,8 +122,6 @@ class MsMenu extends AdminController
                                 <i class="fa fa-pencil-alt"></i>
                             </button>' . $aksi_hapus;
             }
-
-            $action .= '</div>';
 
             $records["data"][] = array(
                 $no++,
