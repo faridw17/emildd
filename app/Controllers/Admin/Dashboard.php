@@ -36,12 +36,22 @@ class Dashboard extends AdminController
         $res = [];
 
         $sampelBanyakData = [];
+        $sampelBanyakTanggal = [];
 
         for ($i = 0; $i < $limit; $i++) {
             $sampelBanyakData[$i] = null;
         }
 
-        $res['xaxis'] = $this->DashboardModel->get_label_x($limit);
+        $tanggal = '';
+        $label_x = [];
+
+        for ($i = 0; $i < $limit; $i++) {
+            $tanggal = date('d-m-Y', strtotime(date('Y-m-d')) - ($limit - $i - 1) * 60 * 60 * 24);
+            $sampelBanyakTanggal[$tanggal] = $i;
+            $label_x[] = $tanggal;
+        }
+
+        $res['xaxis'] = $label_x;
 
         $listDevice = $this->DashboardModel->get_dashboard_mesin();
 
@@ -52,6 +62,12 @@ class Dashboard extends AdminController
                 'name' => $value->device_nama,
                 'data' => $sampelBanyakData,
             ];
+
+            $get_data = $this->DashboardModel->get_line_data($value->device_id, $limit);
+
+            foreach ($get_data as $k => $v) {
+                $res['series'][$key]['data'][$sampelBanyakTanggal[$v->tanggal]] = floatval($v->jam);
+            }
         }
 
         echo json_encode($res);

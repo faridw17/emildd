@@ -47,9 +47,28 @@ class DashboardModel extends Model
         return $res;
     }
 
-    public function get_line_data($limit = 10)
+    public function get_line_data($device_id, $limit = 10)
     {
-        # code...
+        $sql = "SELECT
+                    *
+                from
+                    (
+                    select
+                        date_format(dm.tanggal, '%d-%m-%Y') tanggal,
+                        sum(dm.jam) jam
+                    from
+                        data_mesin dm
+                    where
+                        dm.device_id = $device_id
+                    group by
+                        dm.tanggal
+                    order by
+                        dm.tanggal desc
+                    limit $limit) label
+                order by
+                    tanggal asc";
+        $res = $this->db->query($sql)->getResult();
+        return $res;
     }
 
     public function get_bar_data($where = "")
