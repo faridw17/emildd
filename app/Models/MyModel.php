@@ -85,7 +85,7 @@ class MyModel extends Model
 
         $result = $this->db->query($sql)->getResult();
         foreach ($result as $v) {
-            $res .= '<a class="collapse-item" href="' . base_url() . '/mesin/detail/' . $v->device_id . '">' . $v->device_nama . '</a>';
+            $res .= '<a class="collapse-item" href="' . base_url() . '/admin/mesin/detail/' . $v->device_id . '">' . $v->device_nama . '</a>';
         }
 
         return $res;

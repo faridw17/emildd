@@ -8,16 +8,23 @@ use App\Models\Admin\DashboardModel;
 class Dashboard extends AdminController
 {
     private $DashboardModel;
+    private $nama_pt;
 
     public function __construct()
     {
         parent::__construct();
+        foreach ($this->setting as  $v) {
+            if ($v->setting_nama == 'nama_pt') {
+                $this->nama_pt = $v->setting_value;
+            }
+        }
         $this->DashboardModel = new DashboardModel();
     }
 
     public function index()
     {
         $data['title'] = "Dashboard";
+        $data['nama_pt'] = $this->nama_pt;
         return $this->admin_theme('admin/v_dashboard', $data);
     }
 
