@@ -16,5 +16,6 @@ class DefaultSeeder extends Seeder
         $this->call('GroupMenuSeeder');
         $this->call('SettingSeeder');
         $this->call('DeviceSeeder');
+        $this->call('DataMesinSeeder');
     }
 }
