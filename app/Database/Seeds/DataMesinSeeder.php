@@ -32,6 +32,6 @@ class DataMesinSeeder extends Seeder
             ],
         ];
 
-        $this->db->table('ms_device')->insertBatch($data);
+        $this->db->table('data_mesin')->insertBatch($data);
     }
 }
