@@ -73,6 +73,42 @@ class GroupMenuSeeder extends Seeder
                 "group_id" => 3,
                 "menu_id" => 7,
                 "modul_id" => 1,
+            ], [
+                "group_id" => 1,
+                "menu_id" => 8,
+                "modul_id" => 1,
+            ], [
+                "group_id" => 1,
+                "menu_id" => 9,
+                "modul_id" => 1,
+            ], [
+                "group_id" => 1,
+                "menu_id" => 10,
+                "modul_id" => 1,
+            ], [
+                "group_id" => 2,
+                "menu_id" => 8,
+                "modul_id" => 1,
+            ], [
+                "group_id" => 2,
+                "menu_id" => 9,
+                "modul_id" => 1,
+            ], [
+                "group_id" => 2,
+                "menu_id" => 10,
+                "modul_id" => 1,
+            ], [
+                "group_id" => 3,
+                "menu_id" => 8,
+                "modul_id" => 1,
+            ], [
+                "group_id" => 3,
+                "menu_id" => 9,
+                "modul_id" => 1,
+            ], [
+                "group_id" => 3,
+                "menu_id" => 10,
+                "modul_id" => 1,
             ],
         ];
 

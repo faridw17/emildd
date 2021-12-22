@@ -38,7 +38,7 @@ class Mesin extends AdminController
         $label_x = [];
 
         for ($i = 0; $i < $limit; $i++) {
-            $tanggal = date('d-m-Y', strtotime(date('Y-m-d')) - ($limit - $i - 1) * 60 * 60 * 24);
+            $tanggal = date('Y-m-d', strtotime(date('Y-m-d')) - ($limit - $i - 1) * 60 * 60 * 24);
             $sampelBanyakTanggal[$tanggal] = $i;
             $label_x[] = $tanggal;
         }
@@ -68,6 +68,21 @@ class Mesin extends AdminController
         $data['title'] = "Mesin " . $device_id;
         $data['device_id'] = $device_id;
         $data['nama_pt'] = $this->nama_pt;
+        $data['total_harian'] = $this->MesinModel->get_total_jam($device_id, 'harian');
+        $data['total_bulanan'] = $this->MesinModel->get_total_jam($device_id, 'bulanan');
+        $data['total_tahunan'] = $this->MesinModel->get_total_jam($device_id, 'tahunan');
+        $data['total_all'] = $this->MesinModel->get_total_jam($device_id);
+        $data['status'] = $this->MesinModel->get_status($device_id);
         return $this->admin_theme('admin/v_mesin', $data);
+    }
+
+    public function realtime_detail($device_id)
+    {
+        $data['total_harian'] = $this->MesinModel->get_total_jam($device_id, 'harian');
+        $data['total_bulanan'] = $this->MesinModel->get_total_jam($device_id, 'bulanan');
+        $data['total_tahunan'] = $this->MesinModel->get_total_jam($device_id, 'tahunan');
+        $data['total_all'] = $this->MesinModel->get_total_jam($device_id);
+        $data['status'] = $this->MesinModel->get_status($device_id);
+        echo json_encode($data);
     }
 }

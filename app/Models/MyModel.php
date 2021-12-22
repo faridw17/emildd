@@ -69,25 +69,4 @@ class MyModel extends Model
 
         return $res;
     }
-
-    public function get_list_mesin()
-    {
-        $res = "";
-
-        $sql = "SELECT
-                    *
-                from
-                    ms_device md
-                where
-                    md.device_status = 1
-                order by
-                    device_kode";
-
-        $result = $this->db->query($sql)->getResult();
-        foreach ($result as $v) {
-            $res .= '<a class="collapse-item" href="' . base_url() . '/admin/mesin/detail/' . $v->device_id . '">' . $v->device_nama . '</a>';
-        }
-
-        return $res;
-    }
 }

@@ -44,7 +44,7 @@ class AdminController extends BaseController
         $sidebarMenu = $this->AdminModel->get_sidebar($this->userdata->user_id, 1, 0);
 
         $sidebar['sidebar'] = $sidebarMenu;
-        $sidebar['mesin'] = $this->AdminModel->get_list_mesin();
+        $sidebar['judul'] = $this->judul_website;
 
         $mainData['title'] = !empty($data['title']) ? $data['title'] . " | Administrator" : "Administrator";
         $mainData['navbar'] = view('template/navbar', $navbar);

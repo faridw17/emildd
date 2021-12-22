@@ -6,6 +6,98 @@
 <h1 class="mt-4"><?= $title ?></h1>
 <input type="hidden" name="device_id" id="device_id" value="<?= $device_id ?>">
 <div class="row">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+              RUNNING TIME (DAILY)</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800" id="total_harian"><?= $total_harian ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clock fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+              RUNNING TIME (MONTHLY)</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800" id="total_bulanan"><?= $total_bulanan ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clock fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+              RUNNING TIME (YEARLY)</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800" id="total_tahunan"><?= $total_tahunan ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clock fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+              TOTAL RUNNING TIME</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800" id="total_all"><?= $total_all ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clock fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+              STATUS</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800" id="status_mesin">
+              <?php
+              if ($status == 1) {
+                echo 'ON';
+              } else if ($status == 0) {
+                echo 'OFF';
+              } else {
+                echo 'MAINTENANCE';
+              }
+              ?>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clock fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="offset-lg-1 col-lg-10 col-md-12">
     <div class="card">
       <div class="card-header text-white bg-dark mb-3">Monitoring nyala Mesin (jam)</div>
@@ -99,9 +191,26 @@
     })
   }
 
+  function getStatusMesin() {
+    const device_id = $("#device_id").val()
+    $.ajax({
+      url: "<?= base_url() ?>/admin/mesin/realtime_detail/" + device_id,
+      dataType: 'json',
+      cache: false,
+      success: res => {
+        $("#total_harian").text(res.total_harian);
+        $("#total_bulanan").text(res.total_bulanan);
+        $("#total_tahunan").text(res.total_tahunan);
+        $("#total_all").text(res.total_all);
+        $("#status_mesin").text(res.status == 1 ? 'ON' : res.status == 0 ? 'OFF' : 'MAINTENANCE');
+      }
+    })
+  }
+
   $(document).ready(function() {
     setInterval(() => {
       getGrafikData()
+      getStatusMesin()
     }, 5000);
   })
 </script>

@@ -65,6 +65,30 @@ class MenuSeeder extends Seeder
                 "menu_ikon" => "",
                 "menu_parent_id" => 6,
                 "modul_id" => 1,
+            ], [
+                "menu_kode" => "03",
+                "menu_nama" => "Mesin",
+                "menu_status" => 1,
+                "menu_url" => "#",
+                "menu_ikon" => "",
+                "menu_parent_id" => 0,
+                "modul_id" => 1,
+            ], [
+                "menu_kode" => "03.01",
+                "menu_nama" => "Mesin 1",
+                "menu_status" => 1,
+                "menu_url" => "admin/mesin/detail/1",
+                "menu_ikon" => "",
+                "menu_parent_id" => 8,
+                "modul_id" => 1,
+            ], [
+                "menu_kode" => "03.02",
+                "menu_nama" => "Mesin 2",
+                "menu_status" => 1,
+                "menu_url" => "admin/mesin/detail/2",
+                "menu_ikon" => "",
+                "menu_parent_id" => 8,
+                "modul_id" => 1,
             ],
         ];
 
