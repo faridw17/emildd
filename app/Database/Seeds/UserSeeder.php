@@ -30,6 +30,13 @@ class UserSeeder extends Seeder
                 'user_status'       => 1,
                 'is_superuser'      => 0,
                 'password'          => password_hash('user', PASSWORD_DEFAULT),
+            ], [
+                'user_name'         => "user",
+                'user_fullname'     => "User 1",
+                'user_email'        => "",
+                'user_status'       => 1,
+                'is_superuser'      => 0,
+                'password'          => password_hash('farid', PASSWORD_DEFAULT),
             ],
         ];
 
