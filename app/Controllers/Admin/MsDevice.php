@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\AdminController;
 use App\Models\Admin\MsDeviceModel;
 
-class MsDevice extends AdminController
+class Msdevice extends AdminController
 {
     protected $MsDeviceModel;
     public function __construct()

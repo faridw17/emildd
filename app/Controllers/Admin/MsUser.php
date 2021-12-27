@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\AdminController;
 use App\Models\Admin\MsUserModel;
 
-class MsUser extends AdminController
+class Msuser extends AdminController
 {
     protected $MsUserModel;
     public function __construct()

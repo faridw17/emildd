@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\AdminController;
 use App\Models\Admin\MsGroupModel;
 
-class MsGroup extends AdminController
+class Msgroup extends AdminController
 {
     protected $MsGroupModel;
     public function __construct()

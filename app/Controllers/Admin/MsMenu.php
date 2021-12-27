@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\AdminController;
 use App\Models\Admin\MsMenuModel;
 
-class MsMenu extends AdminController
+class Msmenu extends AdminController
 {
 
     protected $MsMenuModel;
