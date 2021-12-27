@@ -129,7 +129,10 @@ class MsGroupModel extends Model
     {
         $db = \Config\Database::connect();
         $group_menu = $db->table('group_menu');
-        $result = $group_menu->delete(['modul_id' => $modul_id, 'group_id' => $group_id]);
+        $group_menu->where('menu_id !=', 4);
+        $group_menu->where('modul_id', $modul_id);
+        $group_menu->where('group_id', $group_id);
+        $result = $group_menu->delete();
         if ($result) {
             $res = [
                 'status' => true,
