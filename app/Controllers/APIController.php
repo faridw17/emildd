@@ -62,6 +62,6 @@ class APIController extends BaseController
 
     public function insert_test()
     {
-        $this->APIModel->insert_test(json_encode($this->request->getVar()));
+        $this->APIModel->insert_test(['data' => json_encode($this->request->getVar())]);
     }
 }
