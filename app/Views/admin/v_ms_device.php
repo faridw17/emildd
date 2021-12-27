@@ -75,6 +75,7 @@
           <thead>
             <tr>
               <th class="text-center">No.</th>
+              <th class="text-center">Id</th>
               <th class="text-center">Kode</th>
               <th class="text-center">Nama</th>
               <th class="text-center">Status</th>

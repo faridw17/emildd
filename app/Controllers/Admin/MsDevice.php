@@ -24,6 +24,7 @@ class MsDevice extends AdminController
     {
         $columns = array(
             'device_id',
+            'device_id',
             'device_kode',
             'device_nama',
             'device_status',
@@ -84,6 +85,7 @@ class MsDevice extends AdminController
 
             $records["data"][] = array(
                 $no++,
+                $row->device_id,
                 $row->device_kode,
                 $row->device_nama,
                 $status,
