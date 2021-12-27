@@ -14,6 +14,11 @@ class APIController extends BaseController
         $this->APIModel = new APIModel();
     }
 
+    public function index()
+    {
+        echo 'ok';
+    }
+
     public function insert_mesin()
     {
         if ($this->request->getVar('token') != '12345678') {
