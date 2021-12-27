@@ -18,6 +18,6 @@ class APIModel extends Model
 
     public function insert_test($data)
     {
-        $this->db->table('test')->insert($data);
+        $this->db->table('test_data')->insert($data);
     }
 }
