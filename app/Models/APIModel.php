@@ -15,4 +15,9 @@ class APIModel extends Model
     {
         $this->db->table('ms_device')->updateBatch($data, 'device_id');
     }
+
+    public function insert_test($data)
+    {
+        $this->db->table('test')->insert($data);
+    }
 }

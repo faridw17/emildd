@@ -54,4 +54,9 @@ class APIController extends BaseController
             $this->APIModel->update_status_mesin($data_status);
         }
     }
+
+    public function insert_test()
+    {
+        $this->APIModel->insert_test(json_encode($this->request->getVar()));
+    }
 }
