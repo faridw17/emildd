@@ -47,8 +47,9 @@ class DashboardModel extends Model
         return $res;
     }
 
-    public function get_line_data($device_id, $limit = 10)
+    public function get_line_data($device_id, $tgl_pertama)
     {
+        $tgl_pertama = date("Y-m-d", strtotime($tgl_pertama));
         $sql = "SELECT
                     *
                 from
@@ -60,13 +61,13 @@ class DashboardModel extends Model
                         data_mesin dm
                     where
                         dm.device_id = $device_id
+                        and dm.tanggal >= '$tgl_pertama'
                     group by
                         dm.tanggal
                     order by
-                        dm.tanggal desc
-                    limit $limit) label
+                        dm.tanggal desc) label
                 order by
-                    tanggal asc";
+                    label.tanggal asc";
         $res = $this->db->query($sql)->getResult();
         return $res;
     }

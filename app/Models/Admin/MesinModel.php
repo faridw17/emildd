@@ -14,7 +14,7 @@ class MesinModel extends Model
         return $res;
     }
 
-    public function get_line_data($device_id, $limit = 10)
+    public function get_line_data($device_id, $tgl_pertama)
     {
         $sql = "SELECT
                     *
@@ -27,11 +27,11 @@ class MesinModel extends Model
                         data_mesin dm
                     where
                         dm.device_id = $device_id
+                        and dm.tanggal >= '$tgl_pertama'
                     group by
                         dm.tanggal
                     order by
-                        dm.tanggal desc
-                    limit $limit) label
+                        dm.tanggal desc) label
                 order by
                     tanggal asc";
         $res = $this->db->query($sql)->getResult();
@@ -64,5 +64,10 @@ class MesinModel extends Model
     public function get_status($device_id)
     {
         return $this->db->table('ms_device')->getWhere(['device_id' => $device_id])->getRow()->device_kondisi;
+    }
+
+    public function get_nama($device_id)
+    {
+        return $this->db->table('ms_device')->getWhere(['device_id' => $device_id])->getRow()->device_nama;
     }
 }

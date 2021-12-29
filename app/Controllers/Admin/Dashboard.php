@@ -51,11 +51,15 @@ class Dashboard extends AdminController
 
         $tanggal = '';
         $label_x = [];
+        $tgl_pertama = date("d-m-Y");
 
         for ($i = 0; $i < $limit; $i++) {
             $tanggal = date('d-m-Y', strtotime(date('Y-m-d')) - ($limit - $i - 1) * 60 * 60 * 24);
             $sampelBanyakTanggal[$tanggal] = $i;
             $label_x[] = $tanggal;
+            if ($i == 0) {
+                $tgl_pertama = $tanggal;
+            }
         }
 
         $res['xaxis'] = $label_x;
@@ -70,7 +74,7 @@ class Dashboard extends AdminController
                 'data' => $sampelBanyakData,
             ];
 
-            $get_data = $this->DashboardModel->get_line_data($value->device_id, $limit);
+            $get_data = $this->DashboardModel->get_line_data($value->device_id, $tgl_pertama);
 
             foreach ($get_data as $k => $v) {
                 $res['series'][$key]['data'][$sampelBanyakTanggal[$v->tanggal]] = floatval($v->jam);

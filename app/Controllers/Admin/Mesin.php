@@ -36,11 +36,16 @@ class Mesin extends AdminController
 
         $tanggal = '';
         $label_x = [];
+        $tgl_pertama = date("d-m-Y");
+
 
         for ($i = 0; $i < $limit; $i++) {
             $tanggal = date('Y-m-d', strtotime(date('Y-m-d')) - ($limit - $i - 1) * 60 * 60 * 24);
             $sampelBanyakTanggal[$tanggal] = $i;
             $label_x[] = $tanggal;
+            if ($i == 0) {
+                $tgl_pertama = $tanggal;
+            }
         }
 
         $data = $this->MesinModel->get_data_device($device_id);
@@ -53,7 +58,7 @@ class Mesin extends AdminController
             'data' => $sampelBanyakData,
         ];
 
-        $get_data = $this->MesinModel->get_line_data($data->device_id, $limit);
+        $get_data = $this->MesinModel->get_line_data($data->device_id, $tgl_pertama);
 
         foreach ($get_data as $k => $v) {
             $res['series'][0]['data'][$sampelBanyakTanggal[$v->tanggal]] = floatval($v->jam);
@@ -65,8 +70,8 @@ class Mesin extends AdminController
 
     public function detail($device_id)
     {
-        $data['title'] = "Mesin " . $device_id;
         $data['device_id'] = $device_id;
+        $data['title'] = $this->MesinModel->get_nama($device_id);
         $data['nama_pt'] = $this->nama_pt;
         $data['total_harian'] = $this->MesinModel->get_total_jam($device_id, 'harian');
         $data['total_bulanan'] = $this->MesinModel->get_total_jam($device_id, 'bulanan');
