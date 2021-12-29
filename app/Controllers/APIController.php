@@ -21,33 +21,28 @@ class APIController extends BaseController
 
     public function insert_mesin()
     {
-        if ($this->request->getVar('token') != '12345678') {
-            echo json_encode(['status' => false, 'msg' => 'Insert tidak diijinkan']);
-            return;
-        }
+        // if ($this->request->getVar('token') != '12345678') {
+        //     return $this->response->setStatusCode(403);
+        // }
 
-        // echo '<pre>';
-        // print_r($this->request->getVar());
-        // die;
-
-        $input_mesin = $this->request->getVar('data_mesin');
-        $status_mesin = $this->request->getVar('status_mesin');
+        $id = $this->request->getVar('id');
+        $jam = $this->request->getVar('jam');
+        $kondisi = $this->request->getVar('kondisi');
 
         $data_mesin = [];
         $data_status = [];
+        $tgl = date("Y-m-d");
 
-        foreach ($input_mesin as $v) {
+        foreach ($id as $k => $v) {
             $data_mesin[] = [
-                "device_id" => $v->device_id,
-                "jam" => $v->jam,
-                "tanggal" => $v->tgl,
+                "device_id" => $v,
+                "jam" => $jam[$k],
+                "tanggal" => $tgl,
             ];
-        }
 
-        foreach ($status_mesin as $v) {
             $data_status[] = [
-                "device_id" => $v->device_id,
-                "device_kondisi" => $v->status,
+                "device_id" => $v,
+                "device_kondisi" => $kondisi[$k],
             ];
         }
 
@@ -58,6 +53,8 @@ class APIController extends BaseController
         if (count($data_status) > 0) {
             $this->APIModel->update_status_mesin($data_status);
         }
+
+        return $this->response->setStatusCode(201, 'Created');
     }
 
     public function insert_test()
