@@ -138,7 +138,7 @@
           setting_nama: {
             required: true,
           },
-          setting_nilai: {
+          setting_value: {
             required: true,
           },
         },
@@ -225,7 +225,7 @@
     $("#act").val('edit')
     $("#setting_id").val(isi.setting_id)
     $("#setting_nama").val(isi.setting_nama)
-    $("#setting_nilai").val(isi.setting_nilai)
+    $("#setting_value").val(isi.setting_value)
     $("#setting_ket").val(decodeURIComponent(isi.setting_ket))
     $("#setting_status").val(isi.setting_status)
     $("#rowForm").slideDown(500)
