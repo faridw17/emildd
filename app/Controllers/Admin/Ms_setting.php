@@ -85,7 +85,6 @@ class Ms_setting extends AdminController
 
             $records["data"][] = array(
                 $no++,
-                $row->setting_id,
                 $row->setting_nama,
                 $row->setting_value,
                 rawurldecode($row->setting_ket),
