@@ -84,7 +84,7 @@
               <th class="text-center">Nama</th>
               <th class="text-center">Nilai</th>
               <th class="text-center">Keterangan</th>
-              <th class="text-center">Status</th>
+              <!-- <th class="text-center">Status</th> -->
               <th class="text-center">Aksi</th>
             </tr>
           </thead>
@@ -113,8 +113,6 @@
         columnDefs: [{
           targets: [0, -1],
           orderable: false,
-        }, {
-          targets: [0, -2, -1],
           className: 'text-center',
         }, ],
         responsive: true,

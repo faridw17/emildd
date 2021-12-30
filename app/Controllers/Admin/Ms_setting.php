@@ -70,11 +70,11 @@ class Ms_setting extends AdminController
         $no   = 1 + $start;
         foreach ($data as $row) {
             $isi = rawurlencode(json_encode($row));
-            if ($row->setting_status == 1) {
-                $status = '<span class="badge badge-success">Aktif</span>';
-            } else {
-                $status = '<span class="badge badge-danger">Non Aktif</span>';
-            }
+            // if ($row->setting_status == 1) {
+            //     $status = '<span class="badge badge-success">Aktif</span>';
+            // } else {
+            //     $status = '<span class="badge badge-danger">Non Aktif</span>';
+            // }
 
             $action = '<button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
                             <i class="fa fa-pencil-alt"></i>
@@ -85,7 +85,6 @@ class Ms_setting extends AdminController
                 $row->setting_nama,
                 $row->setting_value,
                 rawurldecode($row->setting_ket),
-                $status,
                 $action,
             );
         }
