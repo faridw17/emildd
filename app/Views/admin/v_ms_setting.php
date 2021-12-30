@@ -23,7 +23,7 @@
             <div class="form-group row">
               <label class="col-md-3 label-control">Nama</label>
               <div class="col-md-5">
-                <input type="text" class="form-control" placeholder="Nama" id="setting_nama" name="setting_nama" />
+                <input type="text" class="form-control" placeholder="Nama" readonly id="setting_nama" name="setting_nama" />
               </div>
             </div>
             <div class="form-group row">
@@ -69,7 +69,7 @@
               Data <?= $title ?>
             </h5>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6" style="display: none;">
             <button type="button" id="btnAdd" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Data</button>
           </div>
         </div>

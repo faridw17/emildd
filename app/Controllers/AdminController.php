@@ -12,6 +12,7 @@ class AdminController extends BaseController
     protected $userdata;
     protected $setting;
     protected $judul_website;
+    protected $judul_ikon;
 
     public function __construct()
     {
@@ -24,6 +25,8 @@ class AdminController extends BaseController
         foreach ($this->setting as  $v) {
             if ($v->setting_nama == 'judul_website') {
                 $this->judul_website = $v->setting_value;
+            } else if ($v->setting_nama == 'judul_ikon') {
+                $this->judul_ikon = $v->setting_value;
             }
         }
         $this->AdminModel = new AdminModel();
@@ -45,6 +48,7 @@ class AdminController extends BaseController
 
         $sidebar['sidebar'] = $sidebarMenu;
         $sidebar['judul'] = $this->judul_website;
+        $sidebar['judul_ikon'] = $this->judul_ikon;
 
         $mainData['title'] = !empty($data['title']) ? $data['title'] . " | Administrator" : "Administrator";
         $mainData['navbar'] = view('template/navbar', $navbar);
