@@ -78,9 +78,6 @@ class Ms_setting extends AdminController
 
             $action = '<button onclick="set_val(\'' . $isi . '\')" class="btn btn-sm btn-primary" title="Edit">
                             <i class="fa fa-pencil-alt"></i>
-                        </button>
-                        <button onclick="set_del(\'' . $row->setting_id . '\')" class="btn btn-sm btn-danger " title="Delete">
-                            <i class="fa fa-trash"></i>
                         </button>';
 
             $records["data"][] = array(
