@@ -38,7 +38,7 @@
                 <textarea class="form-control" placeholder="Keterangan" id="setting_ket" name="setting_ket"></textarea>
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" style="display: none;">
               <label class="col-md-3 label-control">Status</label>
               <div class="col-md-3">
                 <select class="form-control" id="setting_status" name="setting_status">
