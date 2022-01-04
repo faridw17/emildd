@@ -175,15 +175,39 @@
       success: res => {
         chartLine.xAxis[0].setCategories(res.xaxis);
 
+        let dataGrafik = {
+          data: [],
+          name: "",
+        };
+
         if (isNewChart == 1) {
-          $.each(res.series, function(index, i) {
-            chartLine.addSeries(i)
-          })
+          if (res.series.length > 0) {
+            $.each(res.series, function(index, i) {
+              dataGrafik.data = i.data.map((item, idx) => {
+                if (item == null) {
+                  return null;
+                } else {
+                  return parseFloat(item.toFixed(2));
+                }
+              })
+              dataGrafik.name = i.name
+              chartLine.addSeries(dataGrafik);
+            })
+          }
           isNewChart = 0;
         } else {
-          $.each(res.series, function(index, i) {
-            chartLine.series[index].setData(i.data);
-          })
+          if (res.series.length > 0) {
+            $.each(res.series, function(index, i) {
+              dataGrafik.data = i.data.map((item, idx) => {
+                if (item == null) {
+                  return null;
+                } else {
+                  return parseFloat(item.toFixed(2));
+                }
+              })
+              chartLine.series[index].setData(dataGrafik.data);
+            })
+          }
         }
 
         chartLine.redraw()
